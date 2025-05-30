@@ -1,0 +1,389 @@
+[
+    {
+        "id": "170a6dfe399a5bb3",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9c1f3d70f0eb30b1",
+        "type": "group",
+        "z": "170a6dfe399a5bb3",
+        "name": "Smartwatch para Raspberry Pi",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "56e3bfd0f1881704",
+            "0be3fb98740d1a1f"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 472,
+        "h": 82
+    },
+    {
+        "id": "36ae05fd3add2a09",
+        "type": "group",
+        "z": "170a6dfe399a5bb3",
+        "name": "Raspberry Pi para Smartwatch",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "fa31df9f1a0153d1",
+            "2c9557525ef1b345",
+            "d0349d78f34b4106",
+            "db69bdb96453f220",
+            "8763b08aeb2f9def",
+            "98612834493fca97",
+            "ee02437d730f1ad5"
+        ],
+        "x": 34,
+        "y": 279,
+        "w": 972,
+        "h": 162
+    },
+    {
+        "id": "fa31df9f1a0153d1",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "Receber QR Code",
+        "topic": "Raspberry",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "db69bdb96453f220",
+                "98612834493fca97"
+            ]
+        ]
+    },
+    {
+        "id": "2c9557525ef1b345",
+        "type": "debug",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "PN",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.pn",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d0349d78f34b4106",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "Envio detalhes",
+        "topic": "Broker/WearOS/Detalhes",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 900,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "56e3bfd0f1881704",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "9c1f3d70f0eb30b1",
+        "name": "Ler QR Code",
+        "topic": "WearOS/Broker/Detalhes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "0be3fb98740d1a1f"
+            ]
+        ]
+    },
+    {
+        "id": "0be3fb98740d1a1f",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "g": "9c1f3d70f0eb30b1",
+        "name": "Acionar leitura de QR Code",
+        "topic": "Broker/Raspberry/QRCode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 360,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0345d6323f738dd6",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "name": "Estocar",
+        "topic": "WearOS/Broker/Estocar",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "df996e3777ee4d3d"
+            ]
+        ]
+    },
+    {
+        "id": "df996e3777ee4d3d",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "name": "Acionar leitura de QR Code",
+        "topic": "Broker/Raspberry/QRCode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 360,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "eb990fd873fbf346",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "name": "Retirar",
+        "topic": "WearOS/Broker/Estocar",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "f84a332ce4c20174"
+            ]
+        ]
+    },
+    {
+        "id": "f84a332ce4c20174",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "name": "Acionar leitura de QR Code",
+        "topic": "Broker/Raspberry/QRCode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 360,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "db69bdb96453f220",
+        "type": "debug",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "QR Code",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e45888f144d4f5de",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "name": "",
+        "topic": "Broker/WearOS/Detalhes",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "d5af6a98e2be888c"
+            ]
+        ]
+    },
+    {
+        "id": "d5af6a98e2be888c",
+        "type": "debug",
+        "z": "170a6dfe399a5bb3",
+        "name": "Detalhes",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8763b08aeb2f9def",
+        "type": "pg",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "Banco de Dados",
+        "query": "",
+        "pgConfig": "e7421710eb2784bd",
+        "outputFormat": "single",
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "ee02437d730f1ad5",
+                "2c9557525ef1b345"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "98612834493fca97",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "function 2",
+        "func": "// Definindo a consulta SQL\nmsg.query = 'SELECT * FROM item WHERE id = $1';\n\n// Colocando o valor de msg.payload (1) dentro de um array, que será passado como parâmetro\nmsg.queryParams = [msg.payload];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "8763b08aeb2f9def"
+            ]
+        ]
+    },
+    {
+        "id": "ee02437d730f1ad5",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "36ae05fd3add2a09",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.pn;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 400,
+        "wires": [
+            [
+                "d0349d78f34b4106"
+            ]
+        ]
+    },
+    {
+        "id": "f82036114b5696bd",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.18.16",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e7421710eb2784bd",
+        "type": "pgConfig",
+        "name": "Banco de Dados",
+        "host": "192.168.18.16",
+        "port": 5432,
+        "dbname": "cadastro",
+        "max": 10,
+        "idleTimeout": 1000,
+        "connectionTimeout": 10000,
+        "user": "casaos",
+        "password": "casaos"
+    }
+]
