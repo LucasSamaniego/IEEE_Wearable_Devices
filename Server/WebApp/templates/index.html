@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="toggle-btn" id="toggle-btn">☰</span>
+            <h3 class="sidebar-title">Menu</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="{{ url_for('map') }}"><i class="fas fa-chart-line"></i> <span>Navegação</span></a></li>
+            <li><a href="{{ url_for('detalhes') }}"><i class="fas fa-chart-pie"></i> <span>Detalhes</span></a></li>
+            <li><a href="{{ url_for('contagem') }}"><i class="fas fa-envelope"></i> <span>Contagem</span></a></li>
+            <li><a href="{{ url_for('movimentacao') }}"><i class="fas fa-cog"></i> <span>Movimentação</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" id="content">
+        <div class="container mt-4">
+            <h1>Sales Dashboard</h1>
+            <div class="row">
+                <!-- Sales Value -->
+                <div class="col-md-4">
+                    <h2>Sales Value</h2>
+                    <p>{{ data['sales_value'] }}</p>
+                    <p><small>Growth: {{ data['growth'] }}</small></p>
+                </div>
+                <!-- Customers -->
+                <div class="col-md-4">
+                    <h2>Customers</h2>
+                    <p>{{ data['customers'] }}</p>
+                    <p><small>Change: {{ data['customers_growth'] }}</small></p>
+                </div>
+                <!-- Revenue -->
+                <div class="col-md-4">
+                    <h2>Revenue</h2>
+                    <p>{{ data['revenue'] }}</p>
+                    <p><small>Change: {{ data['revenue_change'] }}</small></p>
+                </div>
+            </div>
+            <!-- Line Chart -->
+            <div class="mt-5">
+                <h2>Performance Over Time</h2>
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById("sidebar");
+        const content = document.getElementById("content");
+        const toggleBtn = document.getElementById("toggle-btn");
+
+        toggleBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("collapsed");
+            content.classList.toggle("expanded");
+        });
+
+        const ctx = document.getElementById('chart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ data['dates'] | tojson }},
+                datasets: [{
+                    label: 'Sales Value',
+                    data: {{ data['values'] | tojson }},
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
