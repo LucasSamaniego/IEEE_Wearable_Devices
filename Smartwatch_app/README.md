@@ -1,19 +1,13 @@
-Compose for Wear OS Starter Sample
+Warehouse management applcation for Wear OS smartwatch
 ==================================
-Demonstrates a simple "Hello, World" starter project for using Compose with Wear OS.
+This is the core of the application. The tests of this app was made on smartwatch samsung Galaxy Watch 7.
 
-Introduction
+Presentation
 ------------
 
-Simple "Hello, World" app meant as a starting point for a new project using
-Compose for Wear OS.
+When starts the app, it can be seen a simple welcome. To use its functionalities, you just need to press the button that is shown.
 
-Displays a centered [Text] composable and a list built with [Horologist][horologist].
-
-For more information on composable options in Compose for Wear OS, check out our
-[documentation][documentation].
-
-Screenshots
+Screenshot
 -----------
 
 <img src="app/src/test/screenshots/GreetingScreenTest_pixel_watch.png" height="384" alt="Round Screenshot"/>
