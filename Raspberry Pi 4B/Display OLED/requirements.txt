@@ -1,0 +1,9 @@
+streamlit
+opencv-python
+paho-mqtt
+pandas
+networkx
+pyzbar
+libzbar-dev
+picamera2
+libgl1-mesa-glx
