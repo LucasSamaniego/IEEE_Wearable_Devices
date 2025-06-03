@@ -24,7 +24,7 @@ A **smartphone app** was developed to use **NFC tags** for item identification i
 
 ---
 
-### ⌚ **Proposal 2: Smartwatch Application**
+### ⌚ **Proposal 2: Smartwatch Application with QR Codes**
 
 The second proposal involves a **smartwatch app** that performs the same warehouse management functions as the smartphone app. However, instead of NFC, it uses **QR codes** to identify items, leveraging a **camera connected to a Raspberry Pi Zero 2W**.
 
