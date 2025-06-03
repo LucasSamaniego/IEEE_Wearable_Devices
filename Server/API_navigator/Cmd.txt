@@ -1,5 +1,6 @@
 docker build -t img_api_python
 docker run --rm img_api_python
 docker run --rm -p 8000:8000 img_api_python
+sudo docker run --rm -p 8001:8001 -v /home/pi/IEEE_Wearable_Devices/Server/API_navigator:/app img_api_python
 
 
