@@ -1,53 +1,56 @@
-# 📲 Warehouse Management App (Android - MIT App Inventor)
+# 📲 Warehouse Management Android App (MIT App Inventor)
 
-This repository contains a simple yet powerful Android application built with **MIT App Inventor** to support basic warehouse management operations using **NFC tags**.
+This repository is a **component** of the larger project:  
+**“Proposal and Comparative Study of Wearable Devices Applied in Warehouse Management.”**
 
----
-
-## ✏️ **Overview**
-
-The app was developed to simplify inventory control and item handling in warehouse environments. It leverages NFC technology to identify items quickly and provides essential features to streamline warehouse management.
+It focuses on developing an Android application for **NFC-based warehouse management**.
 
 ---
 
-## 🚀 **Key Features**
+## 🔍 Context
+
+As part of a comparative study between wearable and mobile solutions, this Android app demonstrates how smartphones can be leveraged for item tracking and stock control in warehouse environments.
+
+---
+
+## 🌟 Features
 
 ✅ **NFC Tag Reading**  
-Identify items in the warehouse using NFC tags for fast and easy recognition.
+Identify warehouse items using NFC technology.
 
 ✅ **Store**  
-Add new items to the inventory, including essential data and location information.
+Register new items in the database with status and location.
 
 ✅ **Remove**  
-Update the item status when removing it from the stock.
+Update item status and location when removed from stock.
 
 ✅ **Detail**  
-Display detailed information about each item, including status, location, and description.
+Access detailed information about each item.
 
-✅ **Search**  
-Find the best path and directions to reach the item’s location from the operator’s current position.
-
----
-
-## ⚙️ **Technologies Used**
-
-- **MIT App Inventor**: Visual programming platform for app development  
-- **NFC (Near Field Communication)**: Item identification  
+✅ **Search & Navigation**  
+Guide operators with directions to locate specific items.
 
 ---
 
-## 📥 **Installation**
+## 🛠️ Tech Stack
 
-1. Download the `.apk` file from the [Releases](#) section.
-2. Install the app on your Android device.  
-3. Ensure that your device has NFC capabilities and that NFC is enabled.
+- **MIT App Inventor**: Visual programming environment for rapid prototyping.  
+- **Android**: Target platform for NFC-capable devices.  
+- **NFC**: For real-time item recognition and management.
 
 ---
 
-## 🤝 **Contributions**
+## ⚙️ Integration in the Main Project
 
-Want to contribute?  
-- Open an **issue** to report bugs or suggest improvements.  
-- Submit a **pull request** to propose changes or enhancements.
+This module represents the **smartphone-based management system** within the overall project framework.  
+It complements the second wearable proposal (smartwatch app) by offering an alternative implementation based on NFC tags.
+
+---
+
+## 📥 Installation
+
+1. Download the `.apk` file from the [Releases](#) section.  
+2. Install on an NFC-enabled Android device.  
+3. Enable NFC on your device to use the app’s features.
 
 ---
