@@ -12,14 +12,15 @@ The project explores two innovative solutions to simplify inventory and item han
 
 ## 🚀 **System Proposals**
 
-### 📱 **Proposal 1: Smartphone Application**
+### 📱 **Proposal 1: Smartphone Application with OLED Display**
 
 A **smartphone app** was developed to use **NFC tags** for item identification in the warehouse. After scanning the tag, the operator can:
 
-- ✅ **Remove from stock:** updates status and location of the item.
-- ✅ **Store:** inserts the item into the database.
-- ✅ **Detail:** displays detailed information about the item.
-- ✅ **Search:** shows the path and directions from the operator’s current position to the item’s location.
+- ✅ **Remove from stock:** Updates status and location of the item.
+- ✅ **Store:** Inserts the item into the database.
+- ✅ **Detail:** Displays detailed information about the item.
+- ✅ **Search:** Shows the path and directions from the operator’s current position to the item’s location.
+- ✅ **OLED Display:** Shows the directions for the operator to the item location.
 
 ---
 
@@ -42,7 +43,8 @@ The second proposal involves a **smartwatch app** that performs the same warehou
 
 - **Android**: Smartphone app development  
 - **Wear OS**: Smartwatch app development  
-- **Raspberry Pi Zero 2W**: QR code scanning  
+- **Raspberry Pi Zero 2W**: QR code scanning
+- **Raspberry Pi 4B**: Display OLED integration 
 - **NFC**: Quick item identification with smartphones  
 - **QR Codes**: Camera-based item identification for smartwatches
 - **MQTT Broker**: Mosquitto Broker for MQTT communication between the devices and the server
