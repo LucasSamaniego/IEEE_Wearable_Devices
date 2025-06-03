@@ -1,0 +1,5 @@
+docker build -t img_api_python
+docker run --rm img_api_python
+docker run --rm -p 8000:8000 img_api_python
+
+
