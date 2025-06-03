@@ -40,11 +40,14 @@ The second proposal involves a **smartwatch app** that performs the same warehou
 
 ## 💻 **Technologies Used**
 
-- **Android**: smartphone app development  
-- **Wear OS**: smartwatch app development  
+- **Android**: Smartphone app development  
+- **Wear OS**: Smartwatch app development  
 - **Raspberry Pi Zero 2W**: QR code scanning  
-- **NFC**: quick item identification with smartphones  
-- **QR Codes**: camera-based item identification for smartwatches  
+- **NFC**: Quick item identification with smartphones  
+- **QR Codes**: Camera-based item identification for smartwatches
+- **MQTT Broker**: Mosquitto Broker for MQTT communication between the devices and the server
+- **Docker**: Conteinerised application on the server
+- **Node-Red**: Automation flow to manage the MQTT Broker and API requests  
 
 ---
 
@@ -58,24 +61,8 @@ The main objectives of this project are to:
 
 ---
 
-## 🤝 **Contributions**
-
-Want to contribute?  
-- Open an **issue** to report bugs or suggest improvements  
-- Submit a **pull request** to propose changes directly  
-
----
-
 ## 👨‍💻 **Author**
 
-**[Your Name or Organization]**
+**Lucas Samaniego Vicente - UFOP/ITV**
 
 ---
-
-## 📄 **License**
-
-This project is licensed under the **[License Type, e.g., MIT]**.
-
----
-
-💡 *Let’s work together to transform warehouse management into something more efficient and innovative!*
