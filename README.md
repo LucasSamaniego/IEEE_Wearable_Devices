@@ -1,24 +1,68 @@
-This project contains the code used in the paper: Proposal and Comparative Study of Wearable Devices Applied in Warehouse Management.
+# 📦 Proposal and Comparative Study of Wearable Devices Applied in Warehouse Management
 
-Before running the code in this project, it is necessary to install the Raspberry Pi prerequisites.
+This project aims to propose and conduct a comparative study between different **wearable devices** to support and optimize warehouse management.
 
-Description of this project:
+---
 
-models: Directory containing the model.
-utils: Required files are in this directory.
-iv_VideoCapturepy: Script containing the class used to capture images, which can perform synchronous and asynchronous capture.
-yolov7_detector.py: Script containing the class used to detect objects using YOLOv7.
-main.py: Main script that runs the application.
-To run the project: $ python3 main.py output_file_name
+## ✏️ **Overview**
 
-The hardware utilization of NVIDIA devices is measured using the tegrastats tool.
+The project explores two innovative solutions to simplify inventory and item handling operations in warehouse environments. Each proposal focuses on a different device, highlighting its advantages and limitations.
 
-Official documentation: https://docs.nvidia.com/drive/drive_os_5.1.6.1L/nvvib_docs/index.html#page/DRIVE_OS_Linux_SDK_Development_Guide/Utilities/util_tegrastats.html
+---
 
-In this project, the following command was used for measurement: sudo tegrastats --interval 20 --logfile ./output_file.txt
+## 🚀 **System Proposals**
 
-The power mode configuration change is done using the nvpmodel tool. Official documentation: https://docs.nvidia.com/jetson/archives/r34.1/DeveloperGuide/text/SD/PlatformPowerAndPerformance/JetsonOrinNxSeriesAndJetsonAgxOrinSeries.html#nvpmodel-gui
+### 📱 **Proposal 1: Smartphone Application**
 
-Example command to set energy mode 0: $ sudo /usr/sbin/nvpmodel -m 7 Commando to check the energy mode: $ sudo /usr/sbin/nvpmodel -q
+A **smartphone app** was developed to use **NFC tags** for item identification in the warehouse. After scanning the tag, the operator can:
 
-If you have any doubt contact me by the following e-mail: ricardocamara03@gmail.com
+- ✅ **Remove from stock:** updates status and location of the item.
+- ✅ **Store:** inserts the item into the database.
+- ✅ **Detail:** displays detailed information about the item.
+- ✅ **Search:** shows the path and directions from the operator’s current position to the item’s location.
+
+---
+
+### ⌚ **Proposal 2: Smartwatch Application**
+
+The second proposal involves a **smartwatch app** that performs the same warehouse management functions as the smartphone app. However, instead of NFC, it uses **QR codes** to identify items, leveraging a **camera connected to a Raspberry Pi Zero 2W**.
+
+---
+
+## ⚙️ **Common Features**
+
+✔️ Item identification  
+✔️ Stock status updates  
+✔️ Pathfinding and routing in the warehouse  
+✔️ Full item details display  
+
+---
+
+## 💻 **Technologies Used**
+
+- **Android**: Smartphone app development  
+- **Wear OS**: Smartwatch app development  
+- **Raspberry Pi Zero 2W**: QR code scanning  
+- **NFC**: Quick item identification with smartphones  
+- **QR Codes**: Camera-based item identification for smartwatches
+- **MQTT Broker**: Mosquitto Broker for MQTT communication between the devices and the server
+- **Docker**: Conteinerised application on the server
+- **Node-Red**: Automation flow to manage the MQTT Broker and API requests  
+
+---
+
+## 🎯 **Project Goals**
+
+The main objectives of this project are to:
+
+✨ Evaluate the efficiency and usability of each device  
+✨ Determine the best wearable device for specific scenarios  
+✨ Contribute to the modernization and optimization of logistics and inventory processes  
+
+---
+
+## 👨‍💻 **Author**
+
+**Lucas Samaniego Vicente - UFOP/ITV**
+
+---
