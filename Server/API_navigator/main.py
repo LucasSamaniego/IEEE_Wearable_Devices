@@ -8,25 +8,25 @@ app = FastAPI()
 
 # Definição do grafo (usando dicionário de adjacência)
 grafo = {
-    "quarto": {"sala": 2, "banheiro": 1, "varanda": 4},
-    "sala": {"quarto": 2, "cozinha": 3},
-    "banheiro": {"quarto": 1},
-    "cozinha": {"sala": 3, "varanda": 1},
-    "varanda": {"quarto": 4, "cozinha": 1}
+    "P1": {"M7": 2, "G3": 1, "P3": 4},
+    "M7": {"P1": 2, "M2": 3},
+    "G3": {"P1": 1},
+    "M2": {"M7": 3, "P3": 1},
+    "P3": {"P1": 4, "M2": 1}
 }
 
 # Mapeamento de direções entre pares de nós
 direcoes = {
-    ("quarto", "sala"): "frente",
-    ("quarto", "banheiro"): "direita",
-    ("quarto", "varanda"): "trás",
-    ("sala", "quarto"): "trás",
-    ("sala", "cozinha"): "direita",
-    ("cozinha", "sala"): "esquerda",
-    ("cozinha", "varanda"): "frente",
-    ("varanda", "cozinha"): "trás",
-    ("varanda", "quarto"): "frente",
-    ("banheiro", "quarto"): "esquerda"
+    ("P1", "M7"): "frente",
+    ("P1", "G3"): "direita",
+    ("P1", "P3"): "trás",
+    ("M7", "P1"): "trás",
+    ("M7", "M2"): "direita",
+    ("M2", "M7"): "esquerda",
+    ("M2", "P3"): "frente",
+    ("P3", "M2"): "trás",
+    ("P3", "P1"): "frente",
+    ("G3", "P1"): "esquerda"
 }
 
 # Função de Dijkstra para encontrar o menor caminho
@@ -74,6 +74,9 @@ async def processar(request: Request):
         "caminho": caminho,
         "primeira_direcao": direcao
     })
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
 
 # Para rodar o servidor:
 # uvicorn nome_do_arquivo:app --reload
