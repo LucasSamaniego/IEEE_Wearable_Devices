@@ -1,15 +1,20 @@
-# Imagem base (Python 3.11 como exemplo)
-FROM python:3.11-slim
+# Usar uma imagem base Python leve
+FROM python:3.9-slim
 
-# Diretório de trabalho dentro do container
+# Definir o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos de requisitos e instala as dependências
+# Copiar os arquivos de requisitos (se houver) para instalar dependências
 COPY requirements.txt .
+
+# Instalar as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante dos arquivos para o container
+# Copiar todo o código da aplicação para dentro do container
 COPY . .
 
-# Comando para rodar seu script Python
+# Expor a porta que o Flask vai usar
+EXPOSE 8000
+
+# Comando para rodar a aplicação Flask
 CMD ["python", "main.py"]
