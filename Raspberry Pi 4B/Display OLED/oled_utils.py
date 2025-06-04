@@ -1,3 +1,13 @@
+import sys
+import os
+picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
+libdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/lib"
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
+import logging
+import time
+
 from waveshare_OLED import OLED_0in96
 from PIL import Image, ImageDraw
 
