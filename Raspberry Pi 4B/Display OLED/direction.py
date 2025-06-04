@@ -14,19 +14,24 @@ from waveshare_OLED import OLED_0in96
 from PIL import Image, ImageDraw
 
 logging.basicConfig(level=logging.DEBUG)
+# Configurações MQTT
+MQTT_BROKER = "seu_broker_aqui"
+MQTT_PORT = 1883
+MQTT_TOPIC = "direcao/display"
 
-def draw_triangle_on_display(disp, draw, image, direction):
-    """
-    Desenha um triângulo na direção especificada no display OLED.
-    :param disp: objeto do display inicializado
-    :param draw: objeto ImageDraw associado à imagem
-    :param image: objeto PIL Image
-    :param direction: 'frente', 'tras', 'esquerda' ou 'direita'
-    """
+def init_display():
+    """Inicializa o display e retorna os objetos disp, image e draw"""
+    disp = OLED_0in96.OLED_0in96()
+    disp.Init()
+    disp.clear()
+    image = Image.new('1', (disp.width, disp.height), "WHITE")
+    draw = ImageDraw.Draw(image)
+    return disp, image, draw
+
+def draw_triangle(disp, image, draw, direction):
+    """Desenha um triângulo apontando para a direção no display"""
     width, height = disp.width, disp.height
-
-    # Limpa a imagem antes de desenhar (fundo branco)
-    draw.rectangle((0, 0, width, height), fill=1)
+    draw.rectangle((0, 0, width, height), fill=1)  # Fundo branco
 
     if direction == "frente":
         points = [(width // 2, 0), (0, height), (width, height)]
@@ -37,39 +42,51 @@ def draw_triangle_on_display(disp, draw, image, direction):
     elif direction == "direita":
         points = [(0, 0), (width, height // 2), (0, height)]
     else:
-        raise ValueError(f"Direção inválida: {direction}")
+        logging.warning(f"Direção inválida recebida: {direction}")
+        return  # Não atualiza display se direção inválida
 
-    # Desenha triângulo preto no fundo branco
     draw.polygon(points, fill=0)
-
-    # Atualiza o display com a imagem desenhada
     disp.ShowImage(disp.getbuffer(image))
     logging.info(f"Triângulo para '{direction}' desenhado no display.")
 
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        logging.info("Conectado ao broker MQTT com sucesso")
+        client.subscribe(MQTT_TOPIC)
+        logging.info(f"Inscrito no tópico {MQTT_TOPIC}")
+    else:
+        logging.error(f"Falha ao conectar, código de retorno: {rc}")
+
+def on_message(client, userdata, msg):
+    direction = msg.payload.decode().strip().lower()
+    logging.info(f"Mensagem recebida no tópico {msg.topic}: {direction}")
+    draw_triangle(userdata['disp'], userdata['image'], userdata['draw'], direction)
+
+def main():
+    disp, image, draw = init_display()
+
+    # Exibe mensagem inicial
+    draw.rectangle((0, 0, disp.width, disp.height), fill=1)
+    from PIL import ImageFont
+    font = ImageFont.load_default()
+    draw.text((0, disp.height//2 - 8), "Modo navegação", font=font, fill=0)
+    disp.ShowImage(disp.getbuffer(image))
+
+    # Configura MQTT
+    client = mqtt.Client(userdata={'disp': disp, 'image': image, 'draw': draw})
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    try:
+        client.connect(MQTT_BROKER, MQTT_PORT, 60)
+    except Exception as e:
+        logging.error(f"Erro conectando ao broker MQTT: {e}")
+        return
+
+    client.loop_forever()
+
 if __name__ == "__main__":
     try:
-        disp = OLED_0in96.OLED_0in96()
-        logging.info("\r0.96inch OLED - Triângulos de Direção")
-        disp.Init()
-        disp.clear()
-
-        # Cria imagem e contexto de desenho uma vez
-        image = Image.new('1', (disp.width, disp.height), "WHITE")
-        draw = ImageDraw.Draw(image)
-
-        # Exemplo: desenhar triângulos para todas as direções
-        directions = ["frente", "tras", "esquerda", "direita"]
-        for direction in directions:
-            logging.info(f"Desenhando triângulo para: {direction}")
-            draw_triangle_on_display(disp, draw, image, direction)
-            time.sleep(3)
-
-        # Finaliza limpando o display
-        disp.clear()
-
-    except IOError as e:
-        logging.error(e)
+        main()
     except KeyboardInterrupt:
-        logging.info("Interrompido pelo usuário (Ctrl+C).")
-        disp.module_exit()
-        exit()
+        logging.info("Interrompido pelo usuário, saindo...")
