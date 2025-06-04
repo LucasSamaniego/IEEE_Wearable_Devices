@@ -1,5 +1,6 @@
 from oled_utils import init_display, draw_triangle_on_display
 import time
+import logging
 
 disp, image, draw = init_display()
 
