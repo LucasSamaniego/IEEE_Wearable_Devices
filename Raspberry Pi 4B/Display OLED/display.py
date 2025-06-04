@@ -50,18 +50,18 @@ try:
 
     # Lista das direções que queremos mostrar
     direcoes = ["frente", "tras", "esquerda", "direita"]
+    direcao = "frente"
 
-    for direcao in direcoes:
-        logging.info(f"Desenhando triângulo para: {direcao}")
-        # Limpa a imagem para cada novo desenho
-        draw.rectangle((0, 0, disp.width, disp.height), fill=1)
+    logging.info(f"Desenhando triângulo para: {direcao}")
+    # Limpa a imagem para cada novo desenho
+    draw.rectangle((0, 0, disp.width, disp.height), fill=1)
 
-        # Desenha triângulo
-        draw_triangle(draw, direcao, disp.width, disp.height)
+    # Desenha triângulo
+    draw_triangle(draw, direcao, disp.width, disp.height)
 
-        # Mostra a imagem no display
-        disp.ShowImage(disp.getbuffer(image))
-        time.sleep(3)
+    # Mostra a imagem no display
+    disp.ShowImage(disp.getbuffer(image))
+    time.sleep(3)
 
     # Finaliza limpando o display
     disp.clear()
