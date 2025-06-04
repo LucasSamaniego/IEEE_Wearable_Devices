@@ -3,21 +3,43 @@
 
 import sys
 import os
-import logging
-import time
-import paho.mqtt.client as mqtt
-from PIL import Image, ImageDraw, ImageFont
-logging.basicConfig(level=logging.INFO)
-
 # Ajuste os diretórios conforme sua estrutura
 picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
 libdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/lib"
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
-from oled_utils import init_display, draw_triangle_on_display
+import logging
+import time
+import paho.mqtt.client as mqtt
+from PIL import Image, ImageDraw, ImageFont
+logging.basicConfig(level=logging.INFO)
+
+from oled_utils import init_display
 
 logging.basicConfig(level=logging.DEBUG)
+
+def draw_triangle_on_display(display, draw, image, direction):
+    """
+    Função externa para desenhar o triângulo no display.
+    """
+    width = display.width
+    height = display.height
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    
+    if direction == "up":
+        points = [(width//2, 0), (0, height), (width, height)]
+    elif direction == "down":
+        points = [(0, 0), (width, 0), (width//2, height)]
+    elif direction == "left":
+        points = [(0, height//2), (width, 0), (width, height)]
+    elif direction == "right":
+        points = [(0, 0), (width, height//2), (0, height)]
+    else:
+        raise ValueError("Direção inválida.")
+    
+    draw.polygon(points, outline=255, fill=255)
+    display.ShowImage(display.getbuffer(image))
 
 class MqttOLEDClient:
     def __init__(self, broker, port=1883, client_id=None, username=None, password=None):
@@ -48,6 +70,7 @@ class MqttOLEDClient:
         logging.info(f"Direção recebida: {direction}")
 
         try:
+            # Chama a função externa para desenhar
             draw_triangle_on_display(self.display, self.draw, self.image, direction)
             time.sleep(3)
         except ValueError:
