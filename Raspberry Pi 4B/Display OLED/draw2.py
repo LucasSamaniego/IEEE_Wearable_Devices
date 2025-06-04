@@ -29,6 +29,9 @@ class MqttOLEDClient:
     def on_message(self, client, userdata, msg):
         direction = msg.payload.decode().strip().lower()
         logging.info(f"Direção recebida: {direction}")
+        disp, image, draw = init_display()
+        dir = "frente"
+        draw_triangle_on_display(disp, draw, image, dir)
 
     def connect_and_loop(self):
         self.client.connect(self.broker, self.port, 60)
@@ -48,10 +51,10 @@ if __name__ == "__main__":
     mqtt_broker = "192.168.18.16"  # Ajuste para o IP do seu broker
     mqtt_port = 1883
     mqtt_client_id = "raspberry_pi_oled_client"
-    disp, image, draw = init_display()
-    dir = "frente"
-    draw_triangle_on_display(disp, draw, image, dir)
-    time.sleep(3)
+    #disp, image, draw = init_display()
+    #dir = "frente"
+    #draw_triangle_on_display(disp, draw, image, dir)
+    #time.sleep(3)
 
     mqtt_oled_client = MqttOLEDClient(mqtt_broker, mqtt_port, mqtt_client_id)
     mqtt_oled_client.connect_and_loop()
