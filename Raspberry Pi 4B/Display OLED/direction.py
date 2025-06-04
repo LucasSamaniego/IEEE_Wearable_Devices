@@ -10,6 +10,7 @@ if os.path.exists(libdir):
 
 import logging
 import time
+import paho.mqtt.client as mqtt
 from waveshare_OLED import OLED_0in96
 from PIL import Image, ImageDraw
 
