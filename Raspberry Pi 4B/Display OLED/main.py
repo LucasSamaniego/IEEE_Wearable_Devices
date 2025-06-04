@@ -3,6 +3,12 @@
 
 import sys
 import os
+# Ajuste os diretórios conforme sua estrutura
+picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
+libdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/lib"
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
 import logging
 import time
 import traceback
@@ -10,12 +16,6 @@ import threading
 import paho.mqtt.client as mqtt
 from PIL import Image, ImageDraw
 from waveshare_OLED import OLED_0in96
-
-# Ajuste os diretórios conforme sua estrutura
-picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
-libdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/lib"
-if os.path.exists(libdir):
-    sys.path.append(libdir)
 
 logging.basicConfig(level=logging.DEBUG)
 
