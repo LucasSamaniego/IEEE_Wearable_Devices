@@ -35,7 +35,7 @@ def draw_triangle_on_display(direction):
         width, height = disp.width, disp.height
         if direction == "frente":
             points = [(width // 2, 0), (0, height), (width, height)]
-        elif direction == "tras":
+        elif direction == "trás":
             points = [(0, 0), (width, 0), (width // 2, height)]
         elif direction == "esquerda":
             points = [(0, height // 2), (width, 0), (width, height)]
@@ -61,6 +61,6 @@ def draw_triangle_on_display(direction):
 # Exemplo de uso:
 if __name__ == "__main__":
     import time
-    for dir in ["frente", "tras", "esquerda", "direita"]:
-        draw_triangle_on_display(dir)
-        time.sleep(3)
+    dir = "trás"
+    draw_triangle_on_display(dir)
+    time.sleep(3)
