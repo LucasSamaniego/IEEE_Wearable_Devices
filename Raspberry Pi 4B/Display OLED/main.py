@@ -37,21 +37,6 @@ class MqttOLEDClient:
         # Inicializa display usando biblioteca externa
         self.display, self.image, self.draw = init_display()
 
-        # Mostra mensagem inicial
-        self.init_display_message()
-
-    def init_display_message(self):
-        font = ImageFont.load_default()
-        text = "Modo navegação"
-        w, h = self.draw.textsize(text, font=font)
-        x = (self.display.width - w) // 2
-        y = (self.display.height - h) // 2
-
-        # Limpa antes de escrever
-        self.draw.rectangle((0, 0, self.display.width, self.display.height), fill=1)
-        self.draw.text((x, y), text, font=font, fill=0)
-        self.display.ShowImage(self.display.getbuffer(self.image))
-
     def on_connect(self, client, userdata, flags, rc):
         logging.info(f"Conectado ao broker MQTT com código: {rc}")
         client.subscribe("API/WAY")
