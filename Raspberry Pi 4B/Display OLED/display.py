@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+
 import sys
 import os
 picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
@@ -9,43 +12,64 @@ import logging
 import time
 import traceback
 from waveshare_OLED import OLED_0in96
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image, ImageDraw, ImageFont
 logging.basicConfig(level=logging.DEBUG)
 
+def draw_triangle(draw, direction, width, height):
+    """Desenha um triângulo indicando a direção especificada"""
+    if direction == "frente":
+        # Triângulo apontando para cima
+        points = [(width // 2, 0), (0, height), (width, height)]
+    elif direction == "tras":
+        # Triângulo apontando para baixo
+        points = [(0, 0), (width, 0), (width // 2, height)]
+    elif direction == "esquerda":
+        # Triângulo apontando para a esquerda
+        points = [(0, height // 2), (width, 0), (width, height)]
+    elif direction == "direita":
+        # Triângulo apontando para a direita
+        points = [(0, 0), (width, height // 2), (0, height)]
+    else:
+        raise ValueError("Direção inválida: {}".format(direction))
+    
+    draw.polygon(points, fill=0)
 
-def show(direcao):
-    try:
-        disp = OLED_0in96.OLED_0in96()
+try:
+    disp = OLED_0in96.OLED_0in96()
 
-        logging.info("\r 0.96inch OLED ")
-        # Initialize library.
-        disp.Init()
-        # Clear display.
-        logging.info("clear display")
-        disp.clear()
-        
-        # Create blank image for drawing.
-        image1 = Image.new('1', (disp.width, disp.height), "WHITE")
-        draw = ImageDraw.Draw(image1)
-        font1 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 30)
-        #font2 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
-        logging.info ("Desenhando linha...")    
-        draw.line([(0,0),(127,0)], fill = 0)
-        draw.line([(0,63),(127,63)], fill = 0)
-        draw.line([(127,0),(127,63)], fill = 0)
-        logging.info ("Escrevendo texto...")
-        draw.text((30,0), direcao, font = font1, fill = 0)
-        #draw.text((10,24), 'Samaniego', font = font1, fill = 0)
-        image1 = image1.rotate(0)
-        disp.ShowImage(disp.getbuffer(image1))
-        time.sleep(5)
-        disp.clear()
+    logging.info("\r 0.96inch OLED - Triângulos de Direção")
+    # Initialize library.
+    disp.Init()
+    # Clear display.
+    logging.info("Limpar display")
+    disp.clear()
 
-    except IOError as e:
-        logging.info(e)
+    # Cria imagem em branco para desenhar
+    image = Image.new('1', (disp.width, disp.height), "WHITE")
+    draw = ImageDraw.Draw(image)
 
-    except KeyboardInterrupt:
-        logging.info("ctrl + c:")
-        disp.module_exit()
+    # Lista das direções que queremos mostrar
+    direcoes = ["frente", "tras", "esquerda", "direita"]
 
+    for direcao in direcoes:
+        logging.info(f"Desenhando triângulo para: {direcao}")
+        # Limpa a imagem para cada novo desenho
+        draw.rectangle((0, 0, disp.width, disp.height), fill=1)
 
+        # Desenha triângulo
+        draw_triangle(draw, direcao, disp.width, disp.height)
+
+        # Mostra a imagem no display
+        disp.ShowImage(disp.getbuffer(image))
+        time.sleep(3)
+
+    # Finaliza limpando o display
+    disp.clear()
+
+except IOError as e:
+    logging.info(e)
+
+except KeyboardInterrupt:
+    logging.info("ctrl + c:")
+    disp.module_exit()
+    exit()
