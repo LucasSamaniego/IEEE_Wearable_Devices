@@ -49,6 +49,7 @@ class MqttOLEDClient:
 
         try:
             draw_triangle_on_display(self.display, self.draw, self.image, direction)
+            time.sleep(3)
         except ValueError:
             # Se direção inválida, mostrar texto de erro
             font = ImageFont.load_default()
