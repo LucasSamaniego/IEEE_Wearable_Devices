@@ -119,9 +119,9 @@ def main():
         logging.info("Limpar display")
         disp.clear()
 
-    # Cria imagem em branco para desenhar
-    image = Image.new('1', (disp.width, disp.height), "WHITE")
-    draw = ImageDraw.Draw(image)
+        # Cria imagem em branco para desenhar
+        image = Image.new('1', (disp.width, disp.height), "WHITE")
+        draw = ImageDraw.Draw(image)
         mqtt_oled_client.connect_and_loop()
     except KeyboardInterrupt:
         print("Interrompido pelo usuário (Ctrl+C).")
