@@ -15,9 +15,9 @@ from PIL import Image, ImageDraw
 
 logging.basicConfig(level=logging.DEBUG)
 # Configurações MQTT
-MQTT_BROKER = "seu_broker_aqui"
+MQTT_BROKER = "192.168.18.16"
 MQTT_PORT = 1883
-MQTT_TOPIC = "direcao/display"
+MQTT_TOPIC = "API/WAY"
 
 def init_display():
     """Inicializa o display e retorna os objetos disp, image e draw"""
