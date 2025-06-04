@@ -112,6 +112,16 @@ def main():
     
     try:
         disp = OLED_0in96.OLED_0in96()
+        logging.info("\r 0.96inch OLED - Triângulos de Direção")
+        # Initialize library.
+        disp.Init()
+        # Clear display.
+        logging.info("Limpar display")
+        disp.clear()
+
+    # Cria imagem em branco para desenhar
+    image = Image.new('1', (disp.width, disp.height), "WHITE")
+    draw = ImageDraw.Draw(image)
         mqtt_oled_client.connect_and_loop()
     except KeyboardInterrupt:
         print("Interrompido pelo usuário (Ctrl+C).")
