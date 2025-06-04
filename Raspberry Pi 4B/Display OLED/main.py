@@ -3,21 +3,21 @@
 
 import sys
 import os
+import logging
+import time
+import paho.mqtt.client as mqtt
+from PIL import ImageFont
+
 # Ajuste os diretórios conforme sua estrutura
 picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
 libdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/lib"
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
-import logging
-import time
-import traceback
-import threading
-import paho.mqtt.client as mqtt
-from PIL import Image, ImageDraw, ImageFont
-from waveshare_OLED import OLED_0in96
+from oled_utils import init_display, draw_triangle_on_display
 
 logging.basicConfig(level=logging.DEBUG)
+
 class MqttOLEDClient:
     def __init__(self, broker, port=1883, client_id=None, username=None, password=None):
         self.broker = broker
@@ -34,78 +34,56 @@ class MqttOLEDClient:
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
 
-        # Inicializa o display OLED
-        self.display = OLED_0in96.OLED_0in96()
-        self.display.Init()
-        self.display.clear()
+        # Inicializa display usando biblioteca externa
+        self.display, self.image, self.draw = init_display()
 
-        # Mostra a mensagem inicial
-        self.init_display()
+        # Mostra mensagem inicial
+        self.init_display_message()
 
-    def init_display(self):
-        """Mostra 'Modo navegação' ao iniciar."""
-        image = Image.new('1', (self.display.width, self.display.height), 255)
-        draw = ImageDraw.Draw(image)
-
+    def init_display_message(self):
         font = ImageFont.load_default()
         text = "Modo navegação"
-        w, h = draw.textsize(text, font=font)
+        w, h = self.draw.textsize(text, font=font)
         x = (self.display.width - w) // 2
         y = (self.display.height - h) // 2
-        draw.text((x, y), text, font=font, fill=0)
 
-        self.display.ShowImage(self.display.getbuffer(image))
+        # Limpa antes de escrever
+        self.draw.rectangle((0, 0, self.display.width, self.display.height), fill=1)
+        self.draw.text((x, y), text, font=font, fill=0)
+        self.display.ShowImage(self.display.getbuffer(self.image))
 
     def on_connect(self, client, userdata, flags, rc):
-        print(f"Conectado ao broker MQTT com código: {rc}")
+        logging.info(f"Conectado ao broker MQTT com código: {rc}")
         client.subscribe("API/WAY")
-        print("Inscrito no tópico 'API/WAY'.")
+        logging.info("Inscrito no tópico 'API/WAY'.")
 
     def on_message(self, client, userdata, msg):
-        """Desenha o triângulo da direção recebida."""
         direction = msg.payload.decode().strip().lower()
-        print(f"Direção recebida: {direction}")
-        self.display_direction(direction)
+        logging.info(f"Direção recebida: {direction}")
 
-    def display_direction(self, direction):
-        # Cria uma imagem em branco
-        image = Image.new('1', (self.display.width, self.display.height), 255)
-        draw = ImageDraw.Draw(image)
-
-        if direction == 'frente':
-            # Triângulo para cima
-            draw.polygon([(64, 0), (0, 63), (127, 63)], fill=0)
-        elif direction == 'tras':
-            # Triângulo para baixo
-            draw.polygon([(0, 0), (127, 0), (64, 63)], fill=0)
-        elif direction == 'esquerda':
-            # Triângulo para a esquerda
-            draw.polygon([(0, 32), (127, 0), (127, 63)], fill=0)
-        elif direction == 'direita':
-            # Triângulo para a direita
-            draw.polygon([(127, 32), (0, 0), (0, 63)], fill=0)
-        else:
-            # Texto de erro
+        try:
+            draw_triangle_on_display(self.display, self.draw, self.image, direction)
+        except ValueError:
+            # Se direção inválida, mostrar texto de erro
             font = ImageFont.load_default()
-            draw.text((10, 20), "Direção inválida", font=font, fill=0)
-
-        self.display.ShowImage(self.display.getbuffer(image))
+            self.draw.rectangle((0, 0, self.display.width, self.display.height), fill=1)
+            self.draw.text((10, 20), "Direção inválida", font=font, fill=0)
+            self.display.ShowImage(self.display.getbuffer(self.image))
 
     def connect_and_loop(self):
-        """Conecta ao broker e mantém o loop rodando para receber mensagens."""
         self.client.connect(self.broker, self.port, 60)
         self.client.loop_start()
-        print("Aguardando mensagens... (Ctrl+C para sair)")
+        logging.info("Aguardando mensagens... (Ctrl+C para sair)")
 
         try:
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
-            print("Desconectando...")
+            logging.info("Desconectando...")
             self.client.loop_stop()
             self.client.disconnect()
             self.display.clear()
-            print("Desconectado e display limpo.")
+            logging.info("Desconectado e display limpo.")
 
 if __name__ == "__main__":
     mqtt_broker = "192.168.18.16"  # Ajuste para o IP do seu broker
