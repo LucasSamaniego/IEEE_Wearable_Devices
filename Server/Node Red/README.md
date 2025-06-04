@@ -1,1 +1,1 @@
-![Nodered](https://github.com/user-attachments/assets/b3d334df-b061-4240-86cf-e005102fa08f)
+![Nodered Flow v2](https://github.com/user-attachments/assets/bdf847f2-a9a7-4430-b01c-e9e30b21aa5f)
