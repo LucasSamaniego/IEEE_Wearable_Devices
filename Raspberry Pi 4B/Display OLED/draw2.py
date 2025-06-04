@@ -21,9 +21,6 @@ class MqttOLEDClient:
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
 
-        # Inicializa display usando biblioteca externa
-        self.display, self.image, self.draw = init_display()
-
     def on_connect(self, client, userdata, flags, rc):
         logging.info(f"Conectado ao broker MQTT com código: {rc}")
         client.subscribe("API/WAY")
@@ -45,7 +42,6 @@ class MqttOLEDClient:
             logging.info("Desconectando...")
             self.client.loop_stop()
             self.client.disconnect()
-            self.display.clear()
             logging.info("Desconectado e display limpo.")
 
 if __name__ == "__main__":
