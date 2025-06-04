@@ -111,6 +111,7 @@ def main():
     mqtt_oled_client = MqttDisplayClient(mqtt_broker, mqtt_port, mqtt_topic)
     
     try:
+        disp = OLED_0in96.OLED_0in96()
         mqtt_oled_client.connect_and_loop()
     except KeyboardInterrupt:
         print("Interrompido pelo usuário (Ctrl+C).")
