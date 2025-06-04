@@ -21,6 +21,7 @@ def init_display():
 def draw_triangle_on_display(disp, draw, image, direction):
     width, height = disp.width, disp.height
     draw.rectangle((0, 0, width, height), fill=1)
+    logging.info(f"Tentando desenhar")
     if direction == "frente":
         points = [(width // 2, 0), (0, height), (width, height)]
     elif direction == "tras":
