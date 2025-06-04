@@ -7,7 +7,6 @@ if os.path.exists(libdir):
 
 import logging
 import time
-
 from waveshare_OLED import OLED_0in96
 from PIL import Image, ImageDraw
 
