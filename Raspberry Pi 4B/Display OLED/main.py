@@ -60,6 +60,9 @@ class MqttDisplayClient:
         self.disp.Init()
         self.disp.clear()
         logging.info("Display OLED inicializado.")
+        # Cria imagem em branco para desenhar
+        image = Image.new('1', (disp.width, disp.height), "WHITE")
+        draw = ImageDraw.Draw(image)
         
         # Configuração de autenticação MQTT
         if username and password:
@@ -111,17 +114,6 @@ def main():
     mqtt_oled_client = MqttDisplayClient(mqtt_broker, mqtt_port, mqtt_topic)
     
     try:
-        disp = OLED_0in96.OLED_0in96()
-        logging.info("\r 0.96inch OLED - Triângulos de Direção")
-        # Initialize library.
-        disp.Init()
-        # Clear display.
-        logging.info("Limpar display")
-        disp.clear()
-
-        # Cria imagem em branco para desenhar
-        image = Image.new('1', (disp.width, disp.height), "WHITE")
-        draw = ImageDraw.Draw(image)
         mqtt_oled_client.connect_and_loop()
     except KeyboardInterrupt:
         print("Interrompido pelo usuário (Ctrl+C).")
