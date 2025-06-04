@@ -41,10 +41,44 @@
             "98612834493fca97",
             "ee02437d730f1ad5"
         ],
-        "x": 34,
-        "y": 279,
+        "x": 534,
+        "y": 39,
         "w": 972,
         "h": 162
+    },
+    {
+        "id": "b8236e29979fca2a",
+        "type": "group",
+        "z": "170a6dfe399a5bb3",
+        "name": "Smartphone para Banco de Dados e Busca",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "18aa143efd6295a3",
+            "ebd94310bd4d0bf8",
+            "7ff5cdee15470321",
+            "b1e86bf3e4afeea1",
+            "7bc2f76db2e26b43",
+            "6e18c15c3ebe1bba",
+            "7311b804f4f07dd2",
+            "49b81452028be81c",
+            "891966890ef47878",
+            "74178f949150699b",
+            "5b486c746c512889",
+            "1c91566536694ba2",
+            "8628ecdb0237e50a",
+            "46b8dbd13d5a1f88",
+            "c80bd194c4e0589e",
+            "e5ff55296ac9c860",
+            "a3d0733cbd48d9b5",
+            "63a0210f2ce50bed",
+            "b97ef29766ed9c7b"
+        ],
+        "x": 34,
+        "y": 359,
+        "w": 1452,
+        "h": 262
     },
     {
         "id": "fa31df9f1a0153d1",
@@ -60,8 +94,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 150,
-        "y": 400,
+        "x": 650,
+        "y": 160,
         "wires": [
             [
                 "db69bdb96453f220",
@@ -83,8 +117,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
-        "y": 340,
+        "x": 1370,
+        "y": 100,
         "wires": []
     },
     {
@@ -102,8 +136,8 @@
         "correl": "",
         "expiry": "",
         "broker": "f82036114b5696bd",
-        "x": 900,
-        "y": 400,
+        "x": 1400,
+        "y": 160,
         "wires": []
     },
     {
@@ -239,8 +273,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 360,
-        "y": 320,
+        "x": 860,
+        "y": 80,
         "wires": []
     },
     {
@@ -257,7 +291,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 170,
-        "y": 500,
+        "y": 300,
         "wires": [
             [
                 "d5af6a98e2be888c"
@@ -278,7 +312,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 380,
-        "y": 500,
+        "y": 300,
         "wires": []
     },
     {
@@ -290,8 +324,8 @@
         "query": "",
         "pgConfig": "e7421710eb2784bd",
         "outputFormat": "single",
-        "x": 550,
-        "y": 400,
+        "x": 1050,
+        "y": 160,
         "wires": [
             [
                 "ee02437d730f1ad5",
@@ -313,8 +347,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 400,
+        "x": 860,
+        "y": 160,
         "wires": [
             [
                 "8763b08aeb2f9def"
@@ -334,11 +368,403 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
-        "y": 400,
+        "x": 1220,
+        "y": 160,
         "wires": [
             [
                 "d0349d78f34b4106"
+            ]
+        ]
+    },
+    {
+        "id": "18aa143efd6295a3",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Ler Tag NFC - Estocar",
+        "topic": "NFC/ID/ESTOCAR",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "b1e86bf3e4afeea1"
+            ]
+        ]
+    },
+    {
+        "id": "ebd94310bd4d0bf8",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Ler Tag NFC - Retirar",
+        "topic": "NFC/ID/RETIRAR",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "7311b804f4f07dd2"
+            ]
+        ]
+    },
+    {
+        "id": "7ff5cdee15470321",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Ler Tag NFC - Detalhes",
+        "topic": "NFC/ID/DETALHES",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 520,
+        "wires": [
+            [
+                "49b81452028be81c"
+            ]
+        ]
+    },
+    {
+        "id": "b1e86bf3e4afeea1",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 3",
+        "func": "// Definindo a consulta SQL\nmsg.query = 'SELECT * FROM item WHERE id = $1';\n\n// Colocando o valor de msg.payload (1) dentro de um array, que será passado como parâmetro\nmsg.queryParams = [msg.payload];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "7bc2f76db2e26b43"
+            ]
+        ]
+    },
+    {
+        "id": "7bc2f76db2e26b43",
+        "type": "pg",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Banco de Dados",
+        "query": "",
+        "pgConfig": "e7421710eb2784bd",
+        "outputFormat": "single",
+        "x": 570,
+        "y": 460,
+        "wires": [
+            [
+                "6e18c15c3ebe1bba"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6e18c15c3ebe1bba",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 4",
+        "func": "msg.payload = 'Item atualizado no banco de dados.';\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 460,
+        "wires": [
+            [
+                "891966890ef47878"
+            ]
+        ]
+    },
+    {
+        "id": "7311b804f4f07dd2",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 5",
+        "func": "// Definindo a consulta SQL\nmsg.query = 'SELECT * FROM item WHERE id = $1';\n\n// Colocando o valor de msg.payload (1) dentro de um array, que será passado como parâmetro\nmsg.queryParams = [msg.payload];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "7bc2f76db2e26b43"
+            ]
+        ]
+    },
+    {
+        "id": "49b81452028be81c",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 6",
+        "func": "// Definindo a consulta SQL\nmsg.query = 'SELECT * FROM item WHERE nomenclatura = $1';\n\n// Colocando o valor de msg.payload (1) dentro de um array, que será passado como parâmetro\nmsg.queryParams = [msg.payload];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "74178f949150699b"
+            ]
+        ]
+    },
+    {
+        "id": "891966890ef47878",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Enviar - retirar",
+        "topic": "Broker/Smartphone",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 940,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "74178f949150699b",
+        "type": "pg",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Banco de Dados",
+        "query": "",
+        "pgConfig": "e7421710eb2784bd",
+        "outputFormat": "single",
+        "x": 570,
+        "y": 520,
+        "wires": [
+            [
+                "b97ef29766ed9c7b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1c91566536694ba2",
+        "type": "mqtt in",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Ler Tag NFC - Buscar",
+        "topic": "NFC/ID/BUSCAR",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f82036114b5696bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 580,
+        "wires": [
+            [
+                "46b8dbd13d5a1f88"
+            ]
+        ]
+    },
+    {
+        "id": "8628ecdb0237e50a",
+        "type": "http request",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Chamar API Python",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "192.168.18.16:8001/processar/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 970,
+        "y": 580,
+        "wires": [
+            [
+                "a3d0733cbd48d9b5"
+            ]
+        ]
+    },
+    {
+        "id": "46b8dbd13d5a1f88",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 9",
+        "func": "flow.set('original', msg.payload);\n// Definindo a consulta SQL\nmsg.query = 'SELECT localizacao FROM item WHERE nomenclatura = $1';\n\n// Colocando o valor de msg.payload (1) dentro de um array, que será passado como parâmetro\nmsg.queryParams = [msg.payload.objetivo];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 580,
+        "wires": [
+            [
+                "5b486c746c512889"
+            ]
+        ]
+    },
+    {
+        "id": "5b486c746c512889",
+        "type": "pg",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Banco de Dados",
+        "query": "",
+        "pgConfig": "e7421710eb2784bd",
+        "outputFormat": "single",
+        "x": 570,
+        "y": 580,
+        "wires": [
+            [
+                "c80bd194c4e0589e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c80bd194c4e0589e",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 11",
+        "func": "let original = flow.get('original');\nif (!original) {\n    node.error(\"JSON original não encontrado no contexto\");\n    return null;\n}\n\n// Atualiza o objetivo\noriginal.objetivo = msg.payload.localizacao;\n\n// Envia o JSON atualizado\nmsg.payload = original;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 580,
+        "wires": [
+            [
+                "8628ecdb0237e50a"
+            ]
+        ]
+    },
+    {
+        "id": "e5ff55296ac9c860",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Resultado - busca",
+        "topic": "API/WAY",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 1370,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a3d0733cbd48d9b5",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 10",
+        "func": "msg.payload = msg.payload.primeira_direcao\n//msg.payload = msg.payload.caminho\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 580,
+        "wires": [
+            [
+                "e5ff55296ac9c860"
+            ]
+        ]
+    },
+    {
+        "id": "63a0210f2ce50bed",
+        "type": "mqtt out",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "Enviar - detalhes",
+        "topic": "Broker/Smartphone",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f82036114b5696bd",
+        "x": 950,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b97ef29766ed9c7b",
+        "type": "function",
+        "z": "170a6dfe399a5bb3",
+        "g": "b8236e29979fca2a",
+        "name": "function 7",
+        "func": "let obj = msg.payload;\n\nlet textoFormatado = `ID: ${obj.id}\\nNomenclatura: ${obj.nomenclatura}\\nPN: ${obj.pn}\\nSN: ${obj.sn}\\nLocalizacao: ${obj.localizacao}`;\n\nmsg.payload = textoFormatado;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 520,
+        "wires": [
+            [
+                "63a0210f2ce50bed"
             ]
         ]
     },
