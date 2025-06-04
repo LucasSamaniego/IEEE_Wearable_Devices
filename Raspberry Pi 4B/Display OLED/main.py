@@ -6,7 +6,7 @@ import os
 import logging
 import time
 import paho.mqtt.client as mqtt
-from PIL import ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 # Ajuste os diretórios conforme sua estrutura
 picdir = "/home/samaniego/OLED_Module_Code/RaspberryPi/python/pic"
