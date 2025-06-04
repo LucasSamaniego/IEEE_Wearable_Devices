@@ -5,5 +5,6 @@ disp, image, draw = init_display()
 
 directions = ["frente", "tras", "esquerda", "direita"]
 dir = "frente"
+logging.info("Tentando desenhar")
 draw_triangle_on_display(disp, draw, image, dir)
 time.sleep(3)
