@@ -31,7 +31,7 @@ class MqttOLEDClient:
         logging.info(f"Direção recebida: {direction}")
         disp, image, draw = init_display()
         dir = "frente"
-        draw_triangle_on_display(disp, draw, image, dir)
+        draw_triangle_on_display(disp, draw, image, direction)
 
     def connect_and_loop(self):
         self.client.connect(self.broker, self.port, 60)
