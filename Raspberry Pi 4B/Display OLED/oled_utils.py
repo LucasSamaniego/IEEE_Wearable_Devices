@@ -35,3 +35,4 @@ def draw_triangle_on_display(disp, draw, image, direction):
         raise ValueError(f"Direção inválida: {direction}")
     draw.polygon(points, fill=0)
     disp.ShowImage(disp.getbuffer(image))
+    logging.info("Desenhado")
