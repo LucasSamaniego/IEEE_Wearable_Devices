@@ -60,9 +60,6 @@ class MqttDisplayClient:
         self.disp.Init()
         self.disp.clear()
         logging.info("Display OLED inicializado.")
-        # Cria imagem em branco para desenhar
-        image = Image.new('1', (self.disp.width, self.disp.height), "WHITE")
-        draw = ImageDraw.Draw(image)
         
         # Configuração de autenticação MQTT
         if username and password:
