@@ -52,7 +52,7 @@ class MqttClient:
         print("Desconectado do broker MQTT")
 
 def conect_broker():
-    mqtt_broker = "test.mosquitto.org"  # Altere para o endereço do seu broker MQTT
+    mqtt_broker = "192.168.18.16"  # Altere para o endereço do seu broker MQTT
     mqtt_port = 1883  # Altere se o broker usar uma porta diferente
     mqtt_client_id = "raspberry_pi_client"  # Opcional
     mqtt_username = None  # Altere se seu broker exigir autenticação
@@ -73,7 +73,7 @@ def solicitar(item):
 
 def receber(timeout=10):
     client = conect_broker()  # Conecta o cliente ao broker MQTT
-    client.subscribe("detail/item/subscribe")
+    client.subscribe("API/WAY")
 
     # Espera por uma mensagem por um tempo especificado
     client.message_received.wait(timeout)
