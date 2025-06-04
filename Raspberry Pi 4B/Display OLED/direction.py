@@ -61,6 +61,6 @@ def draw_triangle_on_display(direction):
 # Exemplo de uso:
 if __name__ == "__main__":
     import time
-    dir = "esquerda"
+    dir = "frente"
     draw_triangle_on_display(dir)
     time.sleep(3)
