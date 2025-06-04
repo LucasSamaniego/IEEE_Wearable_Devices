@@ -14,7 +14,7 @@ import time
 import traceback
 import threading
 import paho.mqtt.client as mqtt
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 from waveshare_OLED import OLED_0in96
 
 logging.basicConfig(level=logging.DEBUG)
