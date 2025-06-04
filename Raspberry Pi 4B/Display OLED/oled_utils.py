@@ -9,6 +9,7 @@ import logging
 import time
 from waveshare_OLED import OLED_0in96
 from PIL import Image, ImageDraw
+logging.basicConfig(level=logging.INFO)
 
 def init_display():
     disp = OLED_0in96.OLED_0in96()
