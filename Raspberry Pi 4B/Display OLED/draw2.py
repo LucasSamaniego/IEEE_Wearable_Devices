@@ -28,7 +28,7 @@ class MqttOLEDClient:
 
     def on_message(self, client, userdata, msg):
         #direction = msg.payload.decode().strip().lower()
-        direction = msg.payload
+        direction = msg.payload.decode()
         logging.info(f"Direção recebida: {direction}")
         disp, image, draw = init_display()
         dir = "frente"
