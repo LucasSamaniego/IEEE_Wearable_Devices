@@ -25,7 +25,7 @@ def draw_triangle_on_display(disp, draw, image, direction):
     logging.info("Tentando desenhar")
     if direction == "frente":
         points = [(width // 2, 0), (0, height), (width, height)]
-    elif direction == "tras":
+    elif direction == "trás":
         points = [(0, 0), (width, 0), (width // 2, height)]
     elif direction == "esquerda":
         points = [(0, height // 2), (width, 0), (width, height)]
