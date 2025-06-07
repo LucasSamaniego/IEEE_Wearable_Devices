@@ -1,2 +1,1 @@
-sudo snap install mosquitto
-sudo apt install mosquitto
+sudo apt install mosquitto mosquitto-clients
