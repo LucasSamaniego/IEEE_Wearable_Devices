@@ -4,4 +4,5 @@ picamera2
 
 
 ## sudo apt update
-## sudo apt install -y python3-paho-mqtt python3-opencv-python python3-picamera2
+## sudo apt install -y python3-paho-mqtt
+## pip install picamera2
