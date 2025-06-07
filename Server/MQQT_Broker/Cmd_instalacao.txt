@@ -1,1 +1,8 @@
 sudo apt install mosquitto mosquitto-clients
+sudo nano /etc/mosquitto/mosquitto.conf
+# Editar para acrescentar:
+# listener 1883
+# allow_anonymous true
+
+sudo systemctl restart mosquitto
+
