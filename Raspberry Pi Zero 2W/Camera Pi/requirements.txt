@@ -1,6 +1,7 @@
 paho-mqtt
 opencv-python
 picamera2
+pyzbar
 
 
 ## sudo apt update
@@ -11,4 +12,5 @@ picamera2
 ## sudo apt install -y libcap-dev
 ## pip install --break-system-packages picamera2
 ## sudo apt install python3-av python3-jsonschema python3-libarchive python3-numpy python3-pil python3-tqdm python3-pyxattr
+## pip install pyzbar
 
