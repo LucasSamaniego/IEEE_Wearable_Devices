@@ -107,4 +107,7 @@ async def processar(request: Request):
         "primeira_direcao": direcao
     })
 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
+
 # Para rodar o servidor: uvicorn nome_do_arquivo:app --reload
